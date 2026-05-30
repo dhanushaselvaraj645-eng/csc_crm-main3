@@ -6,15 +6,11 @@ from django.utils import timezone
 
 class Staff(models.Model):
 
-    name = models.CharField(
-        max_length=100
-    )
+    name = models.CharField(max_length=100)
 
     email = models.EmailField()
 
-    department = models.CharField(
-        max_length=100
-    )
+    department = models.CharField(max_length=100)
 
     def __str__(self):
 
@@ -65,24 +61,17 @@ class Attendance(models.Model):
 
     # CHECK IN
 
-    check_in = models.DateTimeField(
-        null=True,
-        blank=True)
+    check_in = models.DateTimeField(null=True,blank=True)
 
 
     # CHECK OUT
 
-    check_out = models.DateTimeField(
-        null=True,
-        blank=True)
+    check_out = models.DateTimeField(null=True,blank=True)
 
 
     # TOTAL HOURS
 
-    total_hours = models.CharField(
-        max_length=20,
-        null=True,
-        blank=True)
+    total_hours = models.CharField(max_length=20, null=True,blank=True)
 
 
     # STATUS

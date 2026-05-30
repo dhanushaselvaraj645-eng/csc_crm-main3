@@ -37,9 +37,7 @@ def attendance_page(request):
 
     if date:
 
-        attendance_data = attendance_data.filter(
-            date=date
-        )
+        attendance_data = attendance_data.filter(date=date)
 
 
 
@@ -47,9 +45,7 @@ def attendance_page(request):
 
     if month:
 
-        attendance_data = attendance_data.filter(
-            date__month=month
-        )
+        attendance_data = attendance_data.filter(date__month=month)
 
 
 
@@ -57,9 +53,7 @@ def attendance_page(request):
 
     if year:
 
-        attendance_data = attendance_data.filter(
-            date__year=year
-        )
+        attendance_data = attendance_data.filter(date__year=year)
 
 
 
@@ -71,33 +65,25 @@ def attendance_page(request):
 
     # PRESENT
 
-    present_days = attendance_data.filter(
-        status='Present'
-    ).count()
+    present_days = attendance_data.filter(status='Present').count()
 
 
 
     # ABSENT
 
-    absent_days = attendance_data.filter(
-        status='Absent'
-    ).count()
+    absent_days = attendance_data.filter(status='Absent').count()
 
 
 
     # LEAVE
 
-    leave_days = attendance_data.filter(
-        status='Leave'
-    ).count()
+    leave_days = attendance_data.filter(status='Leave').count()
 
 
 
     # LATE
 
-    late_days = attendance_data.filter(
-        status='Late'
-    ).count()
+    late_days = attendance_data.filter(status='Late').count()
 
 
 
@@ -215,24 +201,14 @@ def staff_checkin(request):
 
         # FIND TODAY ATTENDANCE
 
-        attendance = Attendance.objects.filter(
-
-            staff=staff,
-
-            date=today
-
-        ).first()
+        attendance = Attendance.objects.filter(staff=staff, date=today).first()
 
 
         # CREATE ENTRY
 
         if not attendance:
 
-            attendance = Attendance(
-
-                staff=staff,
-
-                date=today)
+            attendance = Attendance(staff=staff,date=today)
 
 
         # CHECK IN
@@ -299,30 +275,5 @@ def staff_checkin(request):
 
 
 
-# DELETE ATTENDANCE
-
-def delete_attendance(request, id):
 
 
-    record = get_object_or_404(
-
-        Attendance,
-
-        id=id
-
-    )
-
-
-
-    if request.method == 'POST':
-
-
-        record.delete()
-
-
-
-        return redirect(
-
-            request.META.get('HTTP_REFERER')
-
-        )
